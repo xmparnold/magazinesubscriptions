@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for( 'static', filename='userdetails.css' ) }}">
+    <title>User Details</title>
+</head>
+<body>
+
+
+    <div>
+        <a href="/magazine/new">Add Magazine</a>
+
+        <a href="/dashboard">Dashboard</a>
+
+        <form action="/logout">
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+
+    <div>
+        <h1>Update User</h1>
+
+        <form action="/user/details" method="POST">
+
+            <div>
+                <label for="first_name">First Name:</label>
+                <input type="text" name="first_name" id="first_name" value="{{ session[ 'first_name' ] }}">
+
+                {% for message in get_flashed_messages( category_filter = [ "error_edit_first_name" ] ) %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+
+            <div>
+                <label for="last_name">Last Name:</label>
+                <input type="text" name="last_name" id="last_name" value="{{ session[ 'last_name' ] }}">
+
+                {% for message in get_flashed_messages( category_filter = [ "error_edit_last_name" ] ) %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+
+            <div>
+                <label for="email">Email:</label>
+                <input type="text" name="email" id="email" value="{{ session[ 'email' ] }}">
+
+                {% for message in get_flashed_messages( category_filter = [ "error_edit_email" ] ) %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+
+            <button type="submit">Update</button>
+        </form>
+    </div>
+
+    <div>
+        <h1>User's Magazines</h1>
+
+        <div>
+            <ul>
+                {% for magazine in user_magazines: %}
+                <li>
+                    {{ magazine.title }}
+                    <a href="/magazine/{{ magazine.id }}/delete">Delete</a>
+
+                    Subscribers: {{ magazine_subscriptions[ magazine.id ] }}
+                    
+                </li>
+                {% endfor %}
+
+            </ul>
+            
+
+        </div>
+    </div>
+    
+</body>
+</html>

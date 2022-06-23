@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for( 'static', filename='dashboard.css' ) }}">
+    <title>Dashboard</title>
+</head>
+<body>
+
+    <h1>Welcome {{ session[ 'first_name' ] }} {{ session[ 'last_name' ] }}</h1>
+    <div>
+        <a href="/magazine/new">Add Magazine</a>
+
+        <a href="/user/details">Account</a>
+
+        <form action="/logout">
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+
+    <h2>Magazines</h2>
+
+    <div>
+        <ul>
+            {% for magazine in list_magazines: %}
+            <li>
+                <a href="/magazine/{{ magazine.id }}">{{ magazine.title }}</a>
+                added by 
+                {% for user in list_users: %}
+                    {% if magazine.created_by == user.id %}
+                        {{ user.first_name }} {{ user.last_name }}
+                    {% endif %}
+                {% endfor %}
+
+                <a href="/magazine/{{ magazine.id }}/subscribe">Subscribe</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+</body>
+</html>

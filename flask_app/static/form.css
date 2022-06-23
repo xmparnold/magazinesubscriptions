@@ -1,0 +1,47 @@
+body {
+    background-color: rgb(63, 63, 63);
+}
+
+button {
+    color: white;
+    background-color: rgb(73, 73, 223);
+    margin: 10px;
+}
+
+h1 {
+    color: rgb(167, 167, 255);
+}
+
+li {
+    padding-left: 0px;
+    color: white;
+}
+
+a {
+    color: white;
+}
+
+h2 {
+    color: rgb(167, 167, 255);
+}
+
+h3 {
+    color: rgb(167, 167, 255);
+}
+
+input {
+    margin: 10px;
+    background-color: rgb(189, 189, 189);
+    color: black;
+}
+
+textarea {
+    margin: 10px;
+    background-color: rgb(189, 189, 189);
+    color: black;
+}
+
+label {
+    color: white;
+}
+
